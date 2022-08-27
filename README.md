@@ -1,18 +1,18 @@
 # Econometrics_Slides
 
 
-[What is Econometrics?(https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_1/What-is-Econometrics.html)
+[What is Econometrics?](https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_1/What-is-Econometrics.html)
 
-[Chapter 2: The Simple Regression Model(https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_2/Chapter_2.html)
+[Chapter 2: The Simple Regression Model](https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_2/Chapter_2.html)
 
-     [The Simple Regression Model(https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_2/The_simple_regression_introduction.html)
+     [The Simple Regression Model](https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_2/The_simple_regression_introduction.html)
 
 
-[Chapter 3: Multiple Regression Analysis: Estimation(https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_3/Chapter_3.html)
+[Chapter 3: Multiple Regression Analysis: Estimation](https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_3/Chapter_3.html)
 
-[Chapter 4: Multiple Regression Analysis: Inference(https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_4/Chapter_4.html)
+[Chapter 4: Multiple Regression Analysis: Inference](https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_4/Chapter_4.html)
 
-[Chapter 6: Multiple Regression Analysis: Further Issues(https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_6/Chapter-6.html)
+[Chapter 6: Multiple Regression Analysis: Further Issues](https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_6/Chapter-6.html)
 
 
 
