@@ -5,7 +5,7 @@
 
 [Chapter 2: The Simple Regression Model](https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_2/Chapter_2.html)
 
-     [The Simple Regression Model](https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_2/The_simple_regression_introduction.html)
+   [The Simple Regression Model](https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_2/The_simple_regression_introduction.html)
 
 
 [Chapter 3: Multiple Regression Analysis: Estimation](https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_3/Chapter_3.html)
