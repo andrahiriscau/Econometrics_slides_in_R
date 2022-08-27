@@ -1,0 +1,33 @@
+---
+title: "Untitled"
+author: "Andra Hiriscau"
+date: '2022-06-30'
+output:
+  unilur::examen_pdf:
+    mcq: oneparcheckboxes
+    id: yes
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##### Write your answer below
+
+```{block, solution = TRUE, answer.lines = 1}
+This is the hidden answer generating lines in the main pdf file.
+```
+
+
+```{block, mcq = TRUE}
+ - Item 1
+
+ - Item 2
+
+ - Item 3
+
+ - Item 4
+
+ - Item 5
+```

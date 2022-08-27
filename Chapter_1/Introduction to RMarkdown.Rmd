@@ -1,0 +1,23 @@
+---
+title: "Introduction to R Markdown"
+author: "Andra Hiriscau"
+date: '2022-06-29'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+#
+
+* Creating an RMarkdown file
+
+* Formatting text in RMarkdown
+
+* Entering R code
+
+* Running (Knitting an RMarkdown) filer
+
+* Getting additional help with RMarkdown
+

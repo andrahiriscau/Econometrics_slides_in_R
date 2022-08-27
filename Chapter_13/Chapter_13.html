@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Chapter 13: Pooling Cross Sections across Time</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Chapter 13: Pooling Cross Sections across Time
+]
+.subtitle[
+## Introductory Econometrics: A Modern Approach
+]
+
+---
+
+
+
+
+
+
+
+
+
+
+### Outline
+
+
+
+
+
+---
+### 13.1 Policy analysis with pooled cross sections
+
+Two or more independently sampled cross sections can be used to evaluate the impact of a certain event or policy change.
+
+Example: Effect of new garbage incinerator’s location on housing prices.
+
+Examine the effect of the location of a house on its price before and after the garbage incinerator was built:
+
+
+&lt;img src="131.png" width="500px" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="132.png" width="500px" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+Example: Garbage incinerator and housing prices
+
+- It would be wrong to conclude from the regression after the incinerator is there that being near the incinerator depresses prices so strongly.
+- One has to compare with the situation before the incinerator was built:
+
+
+`\(\widehat{\delta}_{1}=-30,688.27-(-18,824.37)=-11,863.9\)`
+
+--
+
+Incinerator depresses prices but location was one with lower prices anyway
+
+In the given case, this is equivalent to:
+
+
+`\(\hat{\delta}_{1}=\left(\overline{\text { rprice }}_{1, n r}-\overline{\text { rprice }}_{1, f r}\right)-\left(\overline{\text { rprice }}_{0, n r}-\overline{r p r i c e}_{0, f r}\right)\)`
+
+
+**This is called the difference-in-differences estimator (DiD)**
+
+
+---
+
+### Difference-in-differences in a regression framework
+
+$$rprice =\beta_{0}+\delta_{0} after+\beta_{1}nearinc+\delta_{1} after *nearinc $+u$$
+
+  `\(\delta_1\)`:  differential effect of being in the location AND after the incinerator was built
+
+
+- In this way standard errors for the DiD-effect can be obtained.
+
+- If houses sold before and after the incinerator was built were systematically different, further explanatory variables should be included.
+
+- This will also reduce the error variance and thus standard errors.
+
+- Before/After comparisons in “natural experiments”
+
+- DiD can be used to evaluate policy changes or other exogenous events.
+
+
+---
+
+### Policy evaluation using difference-in-differences
+
+`\(y=\beta_{0}+\delta_{0} a\)` fter `\(+\beta_{1}\)` treated `\(+\delta_{1}\)` after treated `\(+\)` other factors
+
+Compare outcomes of the two groups before and after the policy change:
+
+`\(\hat{\delta}_{1}=\left(\bar{y}_{1, T}-\bar{y}_{1, C}\right)-\left(\bar{y}_{0, T}-\bar{y}_{0, C}\right)\)`
+
+
+- Compare the difference in outcomes of the units that are affected by the policy change (= treatment group) and those who are not affected (= control group) before and after the policy was enacted.
+
+- For example, the level of unemployment benefits is cut but only for group A (= treatment group). Group A normally has longer unemployment duration than group B (= control group). If the difference in unemployment duration between group A and group B becomes smaller after the reform, reducing unemployment benefits reduces unemployment duration for those affected.
+
+ - Caution: Difference-in-differences only works if the difference in outcomes between the two groups is not changed by other factors than the policy change (e.g. there must be no differential trends).
+
+---
+
+## 13.3 Two-period panel data analysis
+
+Example: Effect of unemployment on city crime rate
+
+
+- Assume that no other explanatory variables are available. Will it be possible to estimate the causal effect of unemployment on crime?
+
+- Yes, if cities are observed for at least two periods and other factors affecting crime stay approximately constant over those periods:
+
+&lt;img src="133.png" width="500px" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+
+
+`$$\begin{aligned} \text { crmrte }_{i 1987} &amp;=\beta_{0}+\delta_{0} \cdot 1+\beta_{1} \text { unem }_{i 1987}+a_{i}+u_{i 1987} \\ \text { crmrte }_{i 1982} &amp;=\beta_{0}+\delta_{0} \cdot 0+\beta_{1} \text { unem }_{i 1982}+a_{i}+u_{i 1982} \\ \text { Subtract: } \Rightarrow \text { drmrte } &amp;=\delta_{0}+\beta_{1} \Delta \text { unem }_{i}+\Delta u_{i} \longleftarrow \text { Fixed effect drops out } \end{aligned}$$`
+Estimate differenced equation by OLS:
+
+
+&lt;img src="134.png" width="500px" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+### Discussion of first-differenced panel estimator
+
+Further explanatory variables may be included in original equation.
+
+Note that there may be arbitrary correlation between the unobserved time-invariant characteristics and the included explanatory variables.
+OLS in the original equation would therefore be inconsistent.
+The first-differenced panel estimator is thus a way to consistently estimate causal effects in the presence of time-invariant endogeneity.
+
+For consistency, strict exogeneity has to hold in the original equation.
+First-differenced estimates will be imprecise if explanatory variables vary only little over time (no estimate possible if time-invariant).
+
+
+---
+
+### Another interpretation of the difference-in-differences estimator
+
+
+We can re-write the DiD estimator as:
+
+
+`\(\hat{\delta}_{1}=\left(\bar{y}_{1, T}-\bar{y}_{0, T}\right)-\left(\bar{y}_{1, C}-\bar{y}_{0, C}\right)\)`
+
+
+The first term is the difference in means over time for the treated group 
+This would be a good estimator of the policy effect only if no external factors changed across the two time periods.
+The second term is the difference in means over time for the control group.
+Subtracting off this term hopefully controls for any changes in external factors that are common to both the treated and control groups, which will be the case when we have random assignment.
+In this case, the DiD estimator can be interpreted as the average treatment effect.
+
+
+---
+
+
+### Adding an additional control group
+
+The standard two-group, two period difference-in-differences setup relies on the assumption of parallel trends.
+Parallel trends assumes that any trends in the outcome y would trend at the same rate in the absence of the intervention. 
+Prior to the intervention, y should move in the same direction for both groups.
+The standard DiD estimator measures the difference in estimated trends between the two groups. 
+If the parallel trends assumption is violated, we cannot be sure that the DiD estimator is identifying the effects of the policy or simply some other unaccounted factor causing different trends between these groups.
+We can add flexibility by adding an additional control group.
+
+
+---
+### Adding an additional control group
+
+Example: The effects of expanding health care for low income families in a particular state.
+Let L denote low-income families (eligible for the policy) and M be middle-income families (not eligible).
+Let B denote states that implemented the policy and A be states that did not implement the policy.
+The policy is implemented in period 1 , but no policy exists in period 0.
+
+The additional control group (income level) allows for more flexibility if we assume that any difference in trends in health outcomes between low and middle income families is similar across states.
+
+
+---
+### Adding an additional control group
+
+`\(y=\beta_{0}+\beta_{1} d L+\beta_{2} d B+\beta_{3} d L * d B+\delta_{0} d 1+\delta_{1} d 1 * d L+\delta_{2} d 1 * d B+\delta_{3} d 1 * d L * d B+u\)`
+`\(\hat{\delta}_{3}=\left[\left(\bar{y}_{1, L, B}-\bar{y}_{0, L, B}\right)-\left(\bar{y}_{1, M, B}-\bar{y}_{0, M, B}\right)\right]-\left[\left(\bar{y}_{1, L, A}-\bar{y}_{0, L, A}\right)-\left(\bar{y}_{1, M, A}-\bar{y}_{0, M, A}\right)\right]\)`
+`\(\hat{\delta}_{3}=\hat{\delta}_{D D, B}-\hat{\delta}_{D D, A}=\hat{\delta}_{D D D}\)`
+
+The difference-in-difference-in differences estimator has two components
+A DD estimator looking only at states that implemented the policy.
+A DD estimator looking only at states that did not implement the policy.
+If health trends between the L and M groups do not differ in non-implementation states, then the second component vanishes and we are back to the standard DiD setup. 
+However, we include this second term to account for possibly different trends in the L and M groups that are common across both states A and B.
+
+
+---
+## A General Framework for Policy Analysis
+
+A more general approach to policy analysis is to include multiple control and treatment groups as well as more than two time periods. 
+Some units may never be treated and others may be treated in different time periods.
+With this general framework, we should avoid trying to fit the problem into the basic DD setup.
+Let each observation i belong to a pair (g, t) , where g is a group and t is a time period.
+We are interested in policy interventions that occur at the group level and in order to be convincing, there should be before and after periods for at least some of the groups in our study.
+
+---
+### A General Framework for Policy Analysis
+
+
+Indicate the policy with a dummy variable `\(x_{g,t}\)` for group `\(g\)` and time `\(t\)`
+
+
+
+&lt;img src="135.png" width="500px" style="display: block; margin: auto;" /&gt;
+
+
+This model can be expanded upon with the addition of lagged policy effects or allowing the policy to have different effects between groups.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

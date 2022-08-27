@@ -1,0 +1,50 @@
+---
+title: "Wooldridge Econometrics with R"
+output: html_notebook
+---
+
+```{r}
+#install.packages(tidyverse)
+#install.packages(wooldridge)
+```
+
+```{r setup, include=FALSE}
+
+library(tidyverse)
+library(wooldridge)
+
+# Additional help
+# www.tidyverse.org
+#https://r4ds.had.co.nz/
+```
+
+## Introducing the Pipe Operator
+
+```{r, include=TRUE,echo=TRUE}
+# allows us to comment
+# loanapp data from wooldridge package
+# ?loanapp
+data (loanapp, package='wooldridge') 
+
+mean(loanapp$price)
+
+# pipe you should think about "then"
+loanapp %>%
+     summarize(avg_price=mean(price))
+
+```
+
+Observations with price less than average price
+
+```{r, include=TRUE,echo=TRUE}
+round(mean (loanapp[loanapp$price < mean(loanapp$price),]$price), digits=2)
+
+
+loanapp %>%
+  filter(price< mean(price)) %>%
+  summarize(avg_price=mean(price)) %>%
+  round(digits=2)
+
+
+```
+
