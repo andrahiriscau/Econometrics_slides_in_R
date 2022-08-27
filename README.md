@@ -1,20 +1,25 @@
 # Econometrics_Slides
 
 
+[What is Econometrics?(https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_1/What-is-Econometrics.html)
 
-[Chapter 3](https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_3/Chapter_3.html)
+[Chapter 2: The Simple Regression Model(https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_2/Chapter_2.html)
 
-
-
-
-[Lecture 1](https://andrahiriscau.github.io/EEconometrics_Slides/Chapter_1/Econometrics.html#1)
+     [The Simple Regression Model(https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_2/The_simple_regression_introduction.html)
 
 
-Introductory Econometrics A Modern Approach Jeffrey M. Wooldridge
+[Chapter 3: Multiple Regression Analysis: Estimation(https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_3/Chapter_3.html)
 
-[Chapter 2](https://andrahiriscau.github.io/Econometrics_Slides/Chapter_2/Chapter_2.html#1)
+[Chapter 4: Multiple Regression Analysis: Inference(https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_4/Chapter_4.html)
 
-[Chapter 3](https://andrahiriscau.github.io/Econometrics_Slides/Chapter_3/Chapter_3.html)
+[Chapter 6: Multiple Regression Analysis: Further Issues(https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_6/Chapter-6.html)
+
+
+
+
+
+
+[Project: The correlation of family income and educational attainment](https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_1/Group_project.Rmd)
 
 
 
@@ -26,6 +31,8 @@ Introductory Econometrics A Modern Approach Jeffrey M. Wooldridge
 The Effect: An Introduction to Research Design and Causality by Nick Huntington-Klein: https://theeffectbook.net/index.html
 
 Causal Inference: The Mixtape by Scott Cunningham: https://mixtape.scunning.com/index.html
+
+
 
 Teaching materials:
 
