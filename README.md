@@ -1,5 +1,12 @@
 # Econometrics_Slides
 
+
+
+[Chapter 3](https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_3/Chapter_3.html)
+
+
+
+
 [Lecture 1](https://andrahiriscau.github.io/EEconometrics_Slides/Chapter_1/Econometrics.html#1)
 
 
