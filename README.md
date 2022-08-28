@@ -3,7 +3,7 @@
 
 [What is Econometrics?](https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_1/What-is-Econometrics.html)
 
-[Starting with R](https://andrahiriscau.github.io/Econometrics_slides_in_R/Starting with R/Starting-with-R.html)
+[Starting with R](https://andrahiriscau.github.io/Econometrics_slides_in_R/Starting-with-R/Starting-with-R.html)
 
 [Chapter 2: The Simple Regression Model](https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_2/Chapter_2.html)
 
