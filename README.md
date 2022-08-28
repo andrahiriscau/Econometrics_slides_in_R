@@ -1,4 +1,3 @@
-# Econometrics_Slides
 
 
 [What is Econometrics?](https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_1/What-is-Econometrics.html)
@@ -40,18 +39,18 @@
 
 
 
-The recommneded books are:
+### The recommneded books are:
 
 Introductory Econometrics A Modern Approach Jeffrey M. Wooldridge
 
-The Effect: An Introduction to Research Design and Causality by Nick Huntington-Klein: https://theeffectbook.net/index.html
+[The Effect: An Introduction to Research Design and Causality by Nick Huntington-Klein:(https://theeffectbook.net/index.html)
 
-Causal Inference: The Mixtape by Scott Cunningham: https://mixtape.scunning.com/index.html
+[Causal Inference: The Mixtape by Scott Cunningham:](https://mixtape.scunning.com/index.html)
 
 
 
-Teaching materials:
+### Teaching materials:
 
-Econometrics Course by Nick Huntington-Klein: https://github.com/NickCH-K/EconometricsSlides
+[Econometrics Course by Nick Huntington-Klein:](https://github.com/NickCH-K/EconometricsSlides)
 
-Causality Inference Course by Nick Huntington-Klein: https://github.com/NickCH-K/CausalitySlides
+[Causality Inference Course by Nick Huntington-Klein:](https://github.com/NickCH-K/CausalitySlides)
