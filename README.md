@@ -40,7 +40,7 @@
 
 
 
-### The recommneded books are:
+## The recommneded books are:
 
 Introductory Econometrics A Modern Approach Jeffrey M. Wooldridge
 
@@ -50,7 +50,7 @@ Introductory Econometrics A Modern Approach Jeffrey M. Wooldridge
 
 
 
-### Teaching materials:
+## Teaching materials:
 
 [Econometrics Course by Nick Huntington-Klein:](https://github.com/NickCH-K/EconometricsSlides)
 
