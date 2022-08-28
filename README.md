@@ -18,7 +18,7 @@
 
 [Chapter 7: Multiple Regression Analysis with Qualitative Information](https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_7/Chapter_7.html)
 
-[Chapter 8: Heteroskedasticity](https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_8/Chapter_8.html)
+[Chapter 8: Heteroskedasticity](https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_8/chapter_8.html)
 
 
 [Chapter 13: Pooling Cross Sections across Time](https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_13/Chapter_13.html)
