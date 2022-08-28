@@ -44,7 +44,7 @@
 
 Introductory Econometrics A Modern Approach Jeffrey M. Wooldridge
 
-[The Effect: An Introduction to Research Design and Causality by Nick Huntington-Klein:(https://theeffectbook.net/index.html)
+[The Effect: An Introduction to Research Design and Causality by Nick Huntington-Klein:](https://theeffectbook.net/index.html)
 
 [Causal Inference: The Mixtape by Scott Cunningham:](https://mixtape.scunning.com/index.html)
 
