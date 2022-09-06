@@ -4,14 +4,14 @@
 
 Introductory Econometrics A Modern Approach Jeffrey M. Wooldridge
 
-[Chapter 2](https://andrahiriscau.github.io/Econometrics_Slides/Chapter_2/Chapter_2.html#1)
+[Chapter 2](https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_2/Chapter_2.html#1)
 
-[Chapter 3](https://andrahiriscau.github.io/Econometrics_Slides/Chapter_3/Chapter_3.html)
-
-
+[Chapter 3](https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_3/Chapter_3.html)
 
 
-The recommneded books are:
+
+
+# The recommneded books are:
 
 Introductory Econometrics A Modern Approach Jeffrey M. Wooldridge
 
@@ -19,7 +19,7 @@ The Effect: An Introduction to Research Design and Causality by Nick Huntington-
 
 Causal Inference: The Mixtape by Scott Cunningham: https://mixtape.scunning.com/index.html
 
-Teaching materials:
+## Teaching materials:
 
 Econometrics Course by Nick Huntington-Klein: https://github.com/NickCH-K/EconometricsSlides
 
