@@ -1,20 +1,20 @@
 # Econometrics Slides Summer 2022
 
-### Review
+## Review
 
 [Describing variables](https://andrahiriscau.github.io/Econometrics_slides_in_R/Review/Review_1.html) 
 
 [Describing relationships](https://andrahiriscau.github.io/Econometrics_slides_in_R/Review/Review_2.pdf) 
 
 
-### R
+## R
 
 [Starting with R](https://andrahiriscau.github.io/Econometrics_slides_in_R/Starting_with_R/Starting-with-R.html)
 
 [Group project description](https://andrahiriscau.github.io/Econometrics_slides_in_R/Starting_with_R/Group_project.html)
 
 
-### Slides: [Introductory Econometrics A Modern Approach](https://www.cengage.com/c/introductoryeconometrics-a-modern-approach-7e-wooldridge/9781337558860PF/) by Jeffrey M. Wooldridge
+## Slides: Introductory Econometrics A Modern Approach Textbook
 
 [Chapter 1: What is Econometrics?](https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_1/What-is-Econometrics.html)
 
@@ -39,7 +39,7 @@
 [Chapter 16: Simultaneous Equations Models](https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_16/Chapter_16.html)
 
 
-### Slides: [The Effect Book](https://theeffectbook.net) by Nick Huntington-Klein
+## Slides: The Effect Book
 
 [Differences-in-Differences](https://andrahiriscau.github.io/Econometrics_slides_in_R/DiD/Differences-in-Differences.html)
 
@@ -53,7 +53,7 @@
 
 # The recommended books are:
 
-Introductory Econometrics A Modern Approach Jeffrey M. Wooldridge
+[Introductory Econometrics A Modern Approach](https://www.cengage.com/c/introductoryeconometrics-a-modern-approach-7e-wooldridge/9781337558860PF/) by Jeffrey M. Wooldridge
 
 [The Effect: An Introduction to Research Design and Causality by Nick Huntington-Klein:](https://theeffectbook.net/index.html)
 
