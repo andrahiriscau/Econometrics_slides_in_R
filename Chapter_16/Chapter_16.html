@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Chapter 16: Simultaneous Equations Models</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Chapter 16: Simultaneous Equations Models
+]
+.subtitle[
+## Introductory Econometrics: A Modern Approach
+]
+
+---
+
+
+
+
+
+
+
+
+### Outline
+
+
+- Simultaneous equations – definition
+- Simultaneity bias
+- 2SLS estimation for simultaneous equations • Testing for rank condition
+
+
+
+---
+
+## Introduction
+
+An  important form of endogeneity of explanatory variables is **simultaneity**. 
+
+  - This arises when one or more of the explanatory variables is **jointly determined** with the dependent variable
+
+  -  The most frequent case is when the two variables are the outcome of a system in equilibrium.
+
+--
+
+- Examples:
+ 
+  - supply and demand equations with price and quantity jointly determined 
+  - labor supply and demand with hours worked and wage jointly determined
+
+--
+
+Simultaneity is another form of endogeneity.
+
+Solution: instrumental variable
+
+
+
+---
+
+## 16.1 The Nature of Simultaneous Equations Models
+
+Example: Labor demand and supply in agriculture
+
+
+&lt;img src="161.png" width="600px" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="162.png" width="600px" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+### Example: Labor demand and supply in agriculture
+
+  - Competition on the labor market in each county `\(i\)` will lead to a county wage `\(w_i\)` 
+  - The total number of hours his supplied `\(h_is\)` by workers in this county equals the total number of hours `\(h_id\)` demanded by agricultural employers:
+
+
+`\(h_{i s}=h_{i d} \Rightarrow\left(h_{i}, w_{i}\right) \quad(=\)` observed equilibrium outcomes in each county)
+
+&lt;img src="163.png" width="650px" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+### Example: Murder rates and the size of the police force
+
+&lt;img src="164.png" width="500px" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="165.png" width="500px" style="display: block; margin: auto;" /&gt;
+
+
+ - `polpc` will not be exogenous because the number of police officers will dependent on how high the murder rate is **(“reverse causation”)**.
+
+ - The interesting equation for policy purposes is the first one. City governments will want to know by how much the murder rate decreases if the number of police officers is exogenously increased.
+ 
+ - This will be hard to measure because the number of police officers is not exogenously chosen (it depends on how much crime there is in the city, see second equation).
+
+
+
+
+---
+
+### Going Further 16.1
+
+A standard model of advertising for monopolistic firms has firms choosing profit maximizing levels of price and advertising expenditures. Does this mean we should use an SEM to model these variables at the firm level?
+
+--
+
+ - Probably not. Firms choose price and advertising expenditures jointly but we are not interested in the experiment where advertising changes exogenously and we want to know the effect on price. 
+ - Instead, we would model price and advertising each as a function of demand and cost variables (economic theory).
+
+
+---
+
+## 16.2 Simultaneity Bias in OLS 
+Variable `\(y_{2}\)` is correlated with the error `\(u_{1}\)` because `\(u_{1}\)` is indirectly a part of `\(y_{2}\)`. OLS applied to this equation will be therefore be inconsistent.
+
+`$$y_{1}=\alpha_{1} y_{2}+\beta_{1} z_{1}+u_{1}$$`
+
+`$$y_{2}=\alpha_{2} y_{1}+\beta_{2} z_{2}+u_{2}$$`
+Insert the first equation into the second
+
+`$$y_{2}=\left[\frac{\alpha_{2} \beta_{1}}{1-\alpha_{2} \alpha_{1}}\right] z_{1}+\left[\frac{\beta_{2}}{1-\alpha_{2} \alpha_{1}}\right] z_{2}+\left[\frac{\alpha_{2} u_{1}+u_{2}}{1-\alpha_{2} \alpha_{1}}\right]$$`
+
+Renaming the coefficients, the reduced form equation for `\(y_2\)`
+
+`$$y_{2}=\pi_{21} z_{1}+\pi_{22} z_{2}+v_{2}$$`
+
+The structural equation will produce biased and inconsistent estimators, but the reduced form
+equation will produce unbiased and consistent estimators because `\(z_1\)` and `\(z_2\)` are not correlated with
+the new error term.
+
+
+---
+### 2SLS estimation for simultaneous equations
+
+- The simultaneous equations can be consistently estimated by 2SLS (two stage least squares).
+
+- In the first stage, the endogenous variable is regressed on the exogenous variables and instruments from the other equation.
+
+- In the second stage, the endogenous variables are replaced by the predicted values from the first stage, and the equations are estimatedby OLS.
+
+
+
+---
+### 2SLS estimation for simultaneous equations
+
+2SLS, first stage: reduced form, regress endogenous variables on all exogenous variables and get predicted values
+
+First stage for eq 1: endogenous variable `\(y_{2}\)` on instrument `\(z_{2}\)` and other exogenous variable `\(z_{1}\)`
+
+`$$\hat{y}_{2}=\hat{\delta}_{0}+\hat{\delta}_{1} z_{1}+\hat{\delta}_{2} z_{2}$$`
+First stage for eq 2: endogenous variable `\(y_{1}\)` on instrument `\(z_{1}\)` and other exogenous variable `\(z_{2}\)`
+
+`$$\hat{y}_{1}=\hat{\gamma}_{0}+\hat{\gamma}_{1} z_{1}+\hat{\gamma}_{2} z_{2}$$`
+
+2SLS, second stage: estimate the equations by replacing the predicted values from first stage for the endogenous variables
+
+`$$y_{1}=\beta_{0}+\beta_{1} \hat{y}_{2}+\beta_{2} z_{1}+u_{1}$$`
+
+`$$y_{2}=\alpha_{0}+\alpha_{1} \hat{y}_{1}+\alpha_{2} z_{2}+u_{2}$$`
+
+
+
+
+---
+## 16.3 Identifying and Estimating a Structural Equation
+
+OLS is biased and inconsistent when applied to a structural equation in a simultaneous equations system
+
+
+  - The mechanics of 2SLS are similar to those in Chapter 15. 
+  - The difference is that, because we specify a structural equation for each endogenous variable, we can immediately see whether sufficient IVs are available to estimate either equation. 
+
+
+---
+### a) Identification in a Two-Equation System
+Example: Supply and demand system
+
+
+
+supply of milk `\(\longrightarrow q=\alpha_{1} p+\beta_{1} z_{1}+u_{1}\)`
+
+  - where `\(z_{1}\)` is the price of cattle feed
+
+
+Demand for milk `\(\longrightarrow q=\alpha_{2} p+u_{2}\)`
+
+
+Which of the two equations is identified?
+
+ 
+
+---
+
+Supply `\(q=\alpha_{1} p+\beta_{1} z_{1}+u_{1}\)`
+
+Demand: `\(q=\alpha_{2} p+u_{2}\)`
+
+&lt;img src="166.png" width="500px" style="display: block; margin: auto;" /&gt;
+
+
+Which of the two equations is identified?
+
+  - The supply function cannot be consistently estimated because one of the regressors is endogenous and we do not have an instrument.
+  - The demand function can be consistently estimated because we can take `\(z_1\)` as an instrument for the endogenous price variable.
+
+
+???
+We have an observed variable z1 that shifts the supply equation while not affecting the demand equation.
+In this way the demand equation can be traced out.
+
+---
+### Example 16.3 Labor Supply for Married, Working Women
+
+Labor supply and demand for working women.
+  - where `kidslt6` is number of kids under 6 years old, and `nwifeinc` is non-wife income
+
+Labor supply of married, working women (hours worked):
+ `$$hours=\beta_{0}+\beta_{1} lwage +\beta_{2}educ +\beta_{3} age +\beta_{4} kidslt 6+\beta_{5} nwifeinc +u_{1}$$`
+
+Labor demand for married, working women (wages offered):
+
+
+`$$lwage=\alpha_{0}+\alpha_{1} hours +\alpha_{2} educ +\alpha_{3} exper +\alpha_{4} exper{ }^{2}+u_{2}$$`
+--
+
+  - `Age`, `number of young children`, and `non-wife income` is a determinant of the supply of labor but not the demand for labor (wages paid) and can be an instrument for `lwage`.
+  - `experience` is a determinat of `lwage` but not how many hours women work and can be used as an instrument for `hours`.
+
+???
+hours and wages are endogeneous (market equilibrium)
+
+---
+### Example 16.3 Labor Supply for Married, Working Women
+
+Structural equations
+
+hours `\(=\beta_{0}+\beta_{1}\)` lwage `\(+\beta_{2}\)` educ `\(+\beta_{3}\)` age `\(+\beta_{4}\)` kidslt `\(6+\beta_{5}\)` nwifeinc `\(+u_{1}\)`
+
+lwage `\(=\alpha_{0}+\alpha_{1}\)` hours `\(+\alpha_{2}\)` educ `\(+\alpha_{3}\)` exper `\(+\alpha_{4}\)` exper `\({ }^{2}+u_{2}\)`
+
+
+`exper` and `\(exper^2\)` are instruments for `lwage` (`exper` and `\(exper^2\)` are not in the `hours` equation, and `exper` and `\(exper^2\)` are related to `lwage`)
+
+same for `age`, `kidslt6`, and `nwifeinc` being good instruments for `hours`
+
+---
+### Example 16.3 Labor Supply for Married, Working Women
+
+2SLS, first stage: reduced form, regress endogenous variables on all exogenous variables and get predicted values
+
+
+First stage for eq 1: endogenous variable `lwage` on instruments `exper` and `\(exper^2\)` and exogenous variables
+
+`$$lwage =\delta_{0}+\delta_{1} exper +\delta_{2} exper ^{2}+\delta_{3} educ +\delta_{4} age +\delta_{5} kidslt 6+\delta_{6} nwifeinc +e_{1}$$`
+2SLS, second stage: estimate the equations by using the predicted values from first stage for endogenous variables
+
+
+`$$hours =\beta_{0}+\beta_{1}\widehat{lwage}+\beta_{2} educ +\beta_{3} age +\beta_{4} kidslt6+\beta_{5} nwifeinc +u_{1}$$`
+`$$lwage =\alpha_{0}+\alpha_{1}\widehat{hours}+\alpha_{2} educ +\alpha_{3} exper +\alpha_{4} exper{ }^{2}+u_{2}$$`
+
+
+
+---
+
+
+```r
+data(mroz, package = "wooldridge")
+mroz %&lt;&gt;% filter(inlf == 1) # keep only working women
+# Regression for hours using OLS estimation
+model1 &lt;- feols(hours ~ lwage + educ + age + kidslt6 + nwifeinc, data=mroz, se = 'hetero')
+
+# Regression for hours using 2SLS estimation
+model2 &lt;-feols(hours ~ educ + age + kidslt6 + nwifeinc | lwage ~ exper+exper^2 , data = mroz) # lwage is instrumented by variables from the other equation
+msummary(list(model1,model2), stars = TRUE, gof_omit = 'AIC|BIC|Lik|F|R2')
+```
+
+
+
+---
+
+&lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 2 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1523.775*** &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2225.662*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (309.423) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (574.564) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; lwage &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −2.047 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (82.023) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; educ &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −6.622 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −183.751** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (18.438) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (59.100) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; age &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.562 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −7.806 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (5.361) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (9.378) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; kidslt6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −328.858** &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −198.154 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (126.681) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (182.929) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; nwifeinc &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −5.918+ &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −10.170 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (3.385) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (6.615) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; fit_lwage &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1639.556*** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (470.576) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 428 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 428 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Std.Errors &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Heteroskedasticity-robust &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; IID &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; " colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; + p &amp;lt; 0.1, * p &amp;lt; 0.05, ** p &amp;lt; 0.01, *** p &amp;lt; 0.001&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+
+
+
+
+
+
+---
+### Example 16.3 Labor Supply for Married, Working Women
+
+In the OLS model, the effect of wage on hours worked is not significant.
+
+In the 2SLS, there is a significant effect of wage on hours worked. 
+
+--
+
+The coefficient on `lwage` in the hours equation is 1,640. 
+
+--
+
+  - *For each 1% increase in wages, hours worked increase by 16.40 hours.*
+
+--
+
+- The magnitude and significance of the coefficients change using OLS vs 2SLS.
+
+- The coefficients on the instruments `exper`, and `expersq` are individually significant.
+
+- An F-test shows that these coefficients are jointly significant.
+
+
+
+
+---
+
+
+```r
+# Regression for lwage using OLS estimation
+model3 &lt;- feols(lwage ~ hours + educ + exper + expersq, mroz)
+
+# Regression for lwage using 2SLS estimation
+# hours is instrumented by variables from the other equation
+model4 &lt;- ivreg(lwage ~   educ + exper + expersq | 
+                hours ~ age + kidslt6 + nwifeinc, 
+                data = mroz)
+msummary(list(model3,model4), diagnostics = TRUE)
+```
+
+
+
+---
+
+&lt;table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 2 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.462 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.656 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.204) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.338) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; hours &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.000) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.000) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; educ &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.106 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.110 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.014) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.016) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; exper &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.045 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.035 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.013) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.019) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; expersq &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.001 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.001 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.000) &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.000) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 428 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 428 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.160 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.126 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 Adj. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.152 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.117 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; AIC &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 873.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; BIC &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 897.9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Log.Lik. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −430.757 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; F &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 20.163 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; RMSE &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.67 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Wu-Hausman Chi-Sq. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sargan J-stat &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.9 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+
+
+
+
+
+---
+### Example 16.3 Labor Supply for Married, Working Women
+
+In the OLS model, the effect of hours on wage is not significant.
+
+In the 2SLS, effect of hours on wage is also not significant.
+
+The OLS results are very similar to the 2SLS results for this equation.
+
+Two of the three coefficients on the instruments `age`, `kidslt6`, and `nwifeinc` are individually significant. 
+
+An F-test shows that these coefficients are jointly significant.
+
+
+
+---
+
+### Order and rank conditions for identification
+
+
+The **order condition** states that an equation is identified if at least one of the exogenous variables is excluded from this equation.
+
+The **rank condition** states that an equation is identified if and only if the other equation includes at least one exogenous variable that is excluded from this equation.
+
+
+`$$y_{1}=\beta_{0}+\beta_{1} y_{2}+\beta_{2} z_{1}+u_{1}$$`
+`$$y_{2}=\alpha_{0}+\alpha_{1} y_{1}+\alpha_{2} z_{2}+u_{2}$$`
+
+
+For the equation for `\(y_{1}\)` to be identified, `\(z_{2}\)` need to be excluded from this equation and included in the other equation of `\(y_{2}\)`.
+
+These are the properties for `\(z_{2}\)` to serve as an instrument for `\(y_{2}\)` (excluded from the equation for `\(y_{1}\)` and included in the equation for `\(\left.y_{2}\right)\)`.
+
+
+---
+
+### Testing for the rank condition
+
+The rank condition states that the exogenous variables that are excluded from the equation are included in the other equation. 
+This can be tested using the reduced form equation.
+
+For the equation for `\(y_{1}\)` to be identified `\(y_{1}=\beta_{0}+\beta_{1} y_{2}+\beta_{2} z_{1}+u_{1}\)`, there needs to be at least one good instrument `\(z_{2}\)` for `\(y_{2}\)`.
+
+
+Estimate the reduced form equation: `\(y_{2}=\delta_{0}+\delta_{1} z_{1}+\delta_{2} z_{2}+e_{1}\)`, and test whether the coefficient on the instrument variable `\(z_{2}\)` is significant.
+
+
+`\(\mathrm{H}_{0}: \delta_{2}=0\)` (equation for `\(y_{1}\)` is not identified)
+
+`\(\mathrm{H}_{0}: \delta_{2} \neq 0\)` (equation for `\(y_{1}\)` is identified)
+
+
+---
+### Testing for the rank condition
+
+Testing for the rank condition: for the equation for `hours` to be identified, there needs to be at least one exogenous variable that is excluded from the equation for `hours` and included in the equation for `lwage`
+
+Estimate the reduced form equation for `lwage`:
+
+lwage `\(=\delta_{0}+\delta_{1}\)` exper `\(+\delta_{2}\)` exper `\({ }^{2}+\delta_{3}\)` educ `\(+\delta_{4}\)` age `\(+\delta_{5}\)` kidslt `\(6+\delta_{6}\)` nwifeinc `\(+e_{1}\)`
+
+  - `exper` and `expersq` are the instruments for `lwage`.
+
+--
+
+Test if coefficients `\(\delta_{1}\)` and `\(\delta_{2}\)` on exper and exper `\({ }^{2}\)` are jointly significantly different from zero.
+
+`\(\mathrm{H}_{0}: \delta_{1}=0\)` and `\(\delta_{2}=0\)` (equation for hours is not identified)
+
+`\(\mathrm{H}_{0}: \delta_{1} \neq 0\)` or `\(\delta_{2} \neq 0\)` (equation for hours is identified)
+
+
+F-statistic `\(=9.33\)` and `\(p\)`-value `\(=0.0001\)`. The coefficients are jointly significant.
+
+Rank condition is satisfied and the equation for hours is identified.
+
+
+---
+### Testing for the rank condition
+
+Testing for rank condition: for the equation for `lwage` to be identified, there needs to be at least one exogenous variable that is excluded from the equation for `lwage` and included in the equation for `hours`.
+
+Estimate the reduced form equation for `hours`:
+
+hours `\(=\gamma_{0}+\gamma_{1}\)` age `\(+\gamma_{2}\)` kidslt `\(6+\gamma_{3}\)` nwifeinc `\(+\gamma_{4}\)` educ `\(+\gamma_{5}\)` exper `\(+\gamma_{6}\)` exper `\({ }^{2}+e_{2}\)`
+
+  - `age`, `kidslt6`, and `nwifeinc` are the instruments for `hours`.
+
+--
+
+Test if coefficients `\(\gamma_{1}\)` and `\(\gamma_{2}\)` and `\(\gamma_{3}\)` on `age`, `kidslt6`, and `nwifeinc` are jointly significantly different from zero.
+
+`\(\mathrm{H}_{0}: \gamma_{1}=0\)` and `\(\gamma_{2}=0\)` and `\(\gamma_{3}=0\)` (equation for `lwage` is not identified)
+
+`\(\mathrm{H}_{0}: \gamma_{1} \neq 0\)` or `\(\gamma_{2} \neq 0\)` or `\(\gamma_{3} \neq 0\)` (equation for `lwage` is identified)
+
+F-statistic `\(=4.46\)` and `\(p\)`-value `\(=0.0043\)`. The coefficients are jointly significant.
+
+Rank condition is satisfied and the equation for lwage is identified.
+
+
+---
+### Testing for rank condition
+
+
+```r
+# Testing for rank condition involves estimating the reduced form equation 
+# and testing for significance of the instrument variables.
+
+# Reduced form equation for lwage, identifying equation for hours
+model5 &lt;- lm(lwage ~ educ + age + kidslt6 + nwifeinc + exper + expersq, mroz)
+summary(model5)
+linearHypothesis(model5, c("exper = 0", "expersq = 0"))
+```
+
+
+---
+### Testing for rank condition
+
+
+```
+## Linear hypothesis test
+## 
+## Hypothesis:
+## exper = 0
+## expersq = 0
+## 
+## Model 1: restricted model
+## Model 2: lwage ~ educ + age + kidslt6 + nwifeinc + exper + expersq
+## 
+##   Res.Df    RSS Df Sum of Sq      F    Pr(&gt;F)    
+## 1    423 195.14                                  
+## 2    421 186.86  2    8.2815 9.3293 0.0001085 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+
+
+
+
+
+---
+### Testing for rank condition
+
+
+```r
+# Testing for rank condition involves estimating the reduced form equation 
+# and testing for significance of the instrument variables.
+
+# Reduced form equation for hours, identifying equation for lwage
+model6 &lt;- lm(hours ~ educ + age + kidslt6 + nwifeinc + exper + expersq, mroz)
+summary(model6)
+linearHypothesis(model6, c("age = 0", "kidslt6 = 0", "nwifeinc = 0"))
+```
+
+
+---
+### Testing for rank condition
+
+
+```
+## Linear hypothesis test
+## 
+## Hypothesis:
+## age = 0
+## kidslt6 = 0
+## nwifeinc = 0
+## 
+## Model 1: restricted model
+## Model 2: hours ~ educ + age + kidslt6 + nwifeinc + exper + expersq
+## 
+##   Res.Df       RSS Df Sum of Sq      F   Pr(&gt;F)   
+## 1    424 231321286                                
+## 2    421 224200428  3   7120858 4.4571 0.004265 **
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

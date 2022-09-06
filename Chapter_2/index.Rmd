@@ -1,0 +1,45 @@
+---
+title: "Lecture 1. What is Econometrics?"
+author: "Andra Hiriscau"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+      css: xaringan-themer.css
+      nature:
+        slideNumberFormat: "%current%"
+        highlightStyle: github
+        highlightLines: true
+        ratio: 16:9
+        countIncrementalSlides: true
+
+---
+
+``` {r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_duo_accent(
+ # primary_color = "#1381B0",
+  primary_color = "#006600", # color first slide and titles
+  secondary_color = "#FF961C",
+  inverse_header_color = "#FFFFFF"  #white
+)
+
+```
+
+
+
+
+---
+## Looking Straight at a Distribution
+
+- The distribution of a variable contains *everything we know* about that variable from empirical observation
+- Any description we make will be a *summary* of that distribution
+- So we may as well look at it directly!
+
+
+---
+## Distributions of Kinds of Variables
+
+- There are two main kinds of variables for which the distributions look different: discrete and continuous
+- Discrete variables take a finite set of values: left-handed, right-handed, ambidextrous. Or "lives in Seattle" vs. "Doesn't" or "Number of kids"
+- Continuous variables take any value: income, height, KwH of electricity used each day
+- (Sometimes, "ordinal" discrete variables with many values are treated as continuous for simplicity)

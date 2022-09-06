@@ -1,0 +1,76 @@
+---
+title: "Untitled"
+output: 
+  beamer_presentation:
+classoption: "aspectratio=169"    
+theme: "Singapore"
+#colortheme: "dolphin"
+fonttheme: "structurebold"
+slide_level: 3
+keep_tex: false
+header-includes:
+ - \usepackage{tcolorbox}
+ - \tcbuselibrary{fitting}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(wooldridge)
+library(stargazer)
+```
+
+## outline
+\tableofcontents[hideallsubsections]
+
+# Section 1
+## Looking Straight at a Distribution
+
+- The distribution of a variable contains *everything we know* about that variable from empirical observation
+\pause
+- Any description we make will be a *summary* of that distribution
+- So we may as well look at it directly!
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+
+
+## Distributions of Kinds of Variables
+
+- There are two main kinds of variables for which the distributions look different: discrete and continuous
+- Discrete variables take a finite set of values: left-handed, right-handed, ambidextrous. Or "lives in Seattle" vs. "Doesn't" or "Number of kids"
+- Continuous variables take any value: income, height, KwH of electricity used each day
+- (Sometimes, "ordinal" discrete variables with many values are treated as continuous for simplicity)
+
+
+# Section 4
+## Slide with Plot
+
+
+
+
+```{r, echo = TRUE, eval=FALSE}
+library(wooldridge)
+data("wage1")
+wageModel <- lm(lwage ~ educ + exper + tenure, data = wage1)
+summary(wageModel)
+
+```
+
+---
+
+```{r, echo = FALSE, eval=TRUE}
+
+
+data("wage1")
+wageModel <- lm(lwage ~ educ + exper + tenure, data = wage1)
+stargazer(wageModel,type = "latex", out = "models.tex", title="first table")
+```
+
+
+
+## Results
+
+\begin{tcolorbox}[fit,width=\textwidth,height=.9\textheight,size=minimal,colback=white,fit algorithm=fontsize,colframe=white]
+  \input{models.tex}
+\end{tcolorbox}
+
+

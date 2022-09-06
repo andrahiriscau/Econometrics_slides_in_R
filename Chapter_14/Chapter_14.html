@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Chapter 14: Advanced Panel Data Methods</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Chapter 14: Advanced Panel Data Methods
+]
+.subtitle[
+## Introductory Econometrics: A Modern Approach
+]
+
+---
+
+
+
+
+
+
+
+
+
+
+### Outline
+
+Fixed effects
+  - Intuition
+  - Assumptions
+  - Properties
+  - Fixed effects or first difference?
+
+Random effects
+  - Assumption
+
+Hausman test
+
+Applying panel data methods to other data structures
+
+
+
+
+---
+### Introduction
+
+We will want to estimate the parameters of the model:
+
+`$$y_{i t}=\beta_{0}+\beta_{1} x_{1 i t}+\beta_{2} x_{2 i t}+\ldots+a_{i}+u_{i t}$$`
+We will see two aditional methods:
+ 
+  1) Fixed effects: Differences `\(a_i\)` away
+  
+  2) Random effects: Puts `\(a_i\)` into the error term
+  
+  
+  
+---
+### Fixed Effects (FE)
+
+`$$y_{i t}=\beta_{1} x_{i t 1}+\ldots+\beta_{k} x_{i t k}+a_{i}+u_{i t}$$`
+
+  - `\(a_i\)` fixed effect (does not change over time), potentially correlated with explanatory variables
+  
+--
+
+Form time-averages for each individual
+
+`$$\bar{y}_{i}=\beta_{1} \bar{x}_{i 1}+\ldots+\beta_{k} \bar{x}_{i k}+\bar{a}_{i}+\bar{u}_{i}$$`
+`$$\left[y_{i t}-\bar{y}_{i}\right]=\beta_{1}\left[x_{i t 1}-\bar{x}_{i 1}\right]+\ldots+\beta_{k}\left[x_{i t k}-\bar{x}_{i k}\right]+\left[u_{i t}-\bar{u}_{i}\right]$$`
+ - Because `\(a_{i}-\bar{a}_{i}=0\)` (the fixed effect is removed)
+ 
+ 
+Estimate time-demeaned equation by OLS
+  - Uses time variation within cross-sectional units (= within estimator)
+
+ 
+---
+### Fixed Effects
+
+This is equivalent to a two steps process:
+
+1) Average equation across each cross section `\(i\)`:
+
+`$$\bar{y}_{i}=\beta_{0}+\beta_{1} \bar{x}_{1 i}+\beta_{2} \bar{x}_{2 i}+\ldots+\bar{u}_{i}$$`
+
+2) Subtract average from each observation:
+
+`$$y_{i t}-\bar{y}_{i}=\beta_{1}\left(x_{1 i t}-\bar{x}_{1 i}\right)+\beta_{2}\left(x_{2 i t}-\bar{x}_{2 i}\right)+\ldots+u_{i t}-\bar{u}_{i}$$`
+
+This process is called **time demeaning** or **within transformation**.
+
+The resulting model above is usually written as:
+
+`$$\ddot{y}_{i t}=\beta_{1} \ddot{x}_{1 i t}+\beta_{2} \ddot{x}_{2 i t}+\ldots+\ddot{u}_{i t}$$`
+
+---
+
+### Fixed effects using dummy variables
+
+The fixed effects estimator is equivalent to introducing a dummy for each individual in the original regression and using pooled OLS:
+
+
+`$$\begin{aligned} y_{i t}=&amp; a_{1} i n d 1_{i t}+a_{2} i n d 2_{i t}+\ldots+a_{N} i n d N_{i t} +\beta_{1} x_{i t 1}+\ldots+\beta_{k} x_{i t k}+u_{i t} \end{aligned}$$`
+  - where `\(i n d 1_{i t}\)` is 1 if observation stems from first individual and 0 otherwise
+
+
+--
+
+After fixed effects estimation, the fixed effects can be estimated as:
+
+
+`$$\hat{a}_{i}=\bar{y}_{i}-\widehat{\beta}_{1} \bar{x}_{i 1}-\ldots-\widehat{\beta}_{k} \bar{x}_{i k}$$`
+
+
+
+---
+
+## Fixed Effects Assumptions
+
+
+The applicability of FE depends on a series of assumptions:
+- **Strict exogeneity of all `\(\mathbf{x}\)`** : Same as in first differences (FD), the error term must not have an effect on future realizations of any `\(x\)`.
+
+--
+
+- **Error terms serially uncorrelated**: This is also a strong assumption, meaning that `\(u_{i t}\)` has no influence on `\(u_{i t+1}\)`. Remember that the error term includes unobserved variables that change over time, but also that their fixed component is included in `\(a_{i}\)`.
+
+--
+
+- **Error term has to be homoskedastic**.
+
+
+---
+## Fixed Effects Properties
+
+The FE estimator has similar properties to those of FD:
+
+--
+
+- All time constant variables are eliminated.
+
+--
+
+- Cross sectional variance is eliminated, need for sufficient variance in changes over time.
+
+--
+
+- Time constant variables can still be interacted with variables that change over time (e.g. year dummies).
+
+--
+
+- If a full set of year dummies is included, one **cannot estimate** the effect of any variable whose change across time is constant (e.g. experience, age).
+
+
+
+
+
+---
+### Example: Effect of training grants on firm scrap rate
+
+`$$scrap_{it}=\beta_{1} d 88_{it}+\beta_{2} d 89_{it}+\beta_{3} grant_{i t}+\beta_{4} grant_{i t-1}+a_{i}+u_{i t}$$`
+  - Time-invariant reasons why one firm is more productive than another are controlled for.
+
+  - The important point is that these may be correlated with the other explanatory variables.
+
+
+Fixed-effects estimation using the years 1987, 1988, and 1989:
+
+
+&lt;img src="1.png" width="600px" style="display: block; margin: auto;" /&gt;
+
+
+Note: Scrap rate is a percentage of failed materials that cannot be restored or repaired and is discarded.
+
+
+---
+### Fixed Effects of First Difference?
+
+The two estimators are very similar. The most important results are:
+
+
+- When `\(T=2\)` the two estimators are exactly identical! But FD is computationally easier.
+
+- When `\(\mathrm{T}&gt;2\)` the following observations are important:
+    - When the `\(u_{i t}\)` are serially uncorrelated `\(\Rightarrow\)` `\(\mathrm{FE}\)` is preferred.
+    - When the `\(\Delta u_{i t}\)` are serially uncorrelated `\(\Rightarrow\)` FD is preferred.
+    - Bias induced by measurement error or a violation of the strict exogeneity assumption may decreases with `\(\mathrm{T}\)` in `\(\mathrm{FE}\)`, but not `\(\mathrm{FD}\)`.
+
+
+---
+### Discussion of Fixed Effects estimator
+
+- Strict exogeneity in the original model has to be assumed.
+- The `\(R^2\)` of the demeaned equation is inappropriate.
+- The effect of time-invariant variables cannot be estimated.
+- The effect of interactions with time-invariant variables can be estimated (e.g. the interaction of education with time dummies).
+- If a full set of time dummies are included, the effect of variables whose change over time is constant cannot be estimated (e.g. experience).
+- Degrees of freedom have to be adjusted because the N time averages are estimated in addition (resulting degrees of freedom = NT-N-k).
+
+
+---
+### Unbalanced panels
+
+An unbalanced panel is when not all cross-sectional units have the same number of observations.
+  - Dropping units with only one time period does not cause bias or inconsistency.
+
+
+*Fixed effects (FE) or First Differencing (FD) with unbalanced panels*
+    
+  - FE will preserve more data than FD when we have unbalanced panels, since FD requires that each observation have data available for both t and t-1.
+  - For example, consider a scenario in which we have seven years of data, but data is missing for all even numbered years. Thus, we observe t=1,3,5,7. 
+
+      - FE will use time periods 1,3,5,7 
+
+      - FD will lose all observations.
+
+
+
+---
+## Random Effects (RE)
+
+The crucial assumption in RE is that all the `\(x_{i t}\)` are uncorrelated with `\(a_{i}\)` :
+
+`$$\operatorname{cov}\left(x_{j t i}, a_{i}\right)=0 ~~~~~~ \forall~~~ j$$`
+
+If this is the case `\(a_{i}\)` can simply be put into the error term:
+
+`$$\nu_{i t}=a_{i}+u_{i t}$$`
+
+Since `\(a_{i}\)` is constant across `\(t\)` the composite error term `\(\nu_{i t}\)` is serially correlated across time!
+
+This model has to be estimated by Generalized Least Squares (GLS)
+
+
+---
+## Random Effects (RE) models
+
+`\(y_{i t}=\beta_{0}+\beta_{1} x_{i t 1}+\cdots+\beta_{k} x_{i t k}+a_{i}+u_{i t}\)`
+
+ - The individual effect `\(a_i\)` is assumed to be "random" (i.e. completely unrelated to explanatory variables)
+ 
+ 
+ **Random effects assumption:** 
+  
+   `$$\operatorname{Cov}\left(x_{i t j}, a_{i}\right)=0, j=1,2, \ldots, k$$`
+ 
+ The composite error `\(a_i\)` + `\(u_{it}\)` is uncorrelated with the explanatory variables but it is serially correlated for observations coming from the same `\(i\)`:
+
+ 
+ For example, in a wage equation, for a given individual the same unobserved ability appears in the error term of each period. Error terms are thus correlated across periods for this individual.
+ 
+ `$$\operatorname{Cov}\left(a_{i}+u_{i t}, a_{i}+u_{i s}\right)=\operatorname{Cov}\left(a_{i}, a_{i}\right)=\sigma_{a}^{2}$$`
+ 
+ 
+---
+### Example: Wage equation using panel data
+
+ 
+&lt;img src="2.png" width="600px" style="display: block; margin: auto;" /&gt;
+
+
+ Random effects or fixed effects?
+
+  - In economics, unobserved individual effects are seldomly uncorrelated with explanatory variables so that fixed effects is more convincing.
+
+
+---
+### Hausman test
+
+One can use FE and RE, and then formally test for statistically significant differences in the coefficients on the time varying explanatory variables
+
+  - If the Hausman test statistic  is *not significantly different* from zero, then both the FE and RE estimators are consistent. RE estimator should be used because it is more efficient.
+  
+  - If the Hausman test statistic is *significantly different* from zero, then only the FE estimator is consistent and should be used.
+  
+  
+  
+---
+
+
+```r
+library(plm)
+data(jtrain)
+# Fixed effects within estimator using plm package
+model_fe &lt;- plm(formula = lscrap ~ tothrs + d88 + d89 + grant + grant_1, 
+              data = jtrain, 
+              index = c("fcode", "year"), # c(group index, time index)
+              model = "within", effect = "individual") 
+
+# Fixed effects within estimator using feols package
+model_fe_2&lt;-feols( lscrap ~ tothrs + d88 + d89 + grant + grant_1 | year + fcode , data = jtrain)
+
+# summary
+msummary(list(model_fe,model_fe_2), stars = TRUE)
+```
+ 
+ 
+  
+---
+
+&lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 2 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; tothrs &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.005 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.005 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.003) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.002) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; d88 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.075 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.121) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; d89 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.218 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.156) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; grant &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.118 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.118 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.181) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.068) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; grant_1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.410+ &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.410+ &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.228) &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.125) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 146 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 146 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.229 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.922 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 Adj. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.216 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.877 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 Within &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.061 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 Pseudo &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; AIC &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 260.6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; BIC &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 421.7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Log.Lik. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −76.299 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Std.Errors &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; by: year &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; FE: year &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; X &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; FE: fcode &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; X &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; " colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; + p &amp;lt; 0.1, * p &amp;lt; 0.05, ** p &amp;lt; 0.01, *** p &amp;lt; 0.001&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+ 
+  
+---
+
+
+```r
+# Random effects estimator
+# model_re &lt;- update(model_ols, model = "random", random.method = "walhus")
+model_re &lt;- plm(formula = lscrap ~ tothrs + d88 + d89 + grant + grant_1, 
+              data = jtrain, 
+              index = c("fcode", "year"), # c(group index, time index)
+              model = "random", random.method = "walhus")  
+summary(model_re)
+```
+
+---
+
+&lt;table style="NAborder-bottom: 0; width: auto !important; margin-left: auto; margin-right: auto;" class="table"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Model 1 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; (Intercept) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.664** &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.217) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; tothrs &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.005+ &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.003) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; d88 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.092 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.119) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; d89 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.248 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.152) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; grant &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.074 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; (0.175) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; grant_1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; −0.355 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;box-shadow: 0px 1px"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;box-shadow: 0px 1px"&gt; (0.220) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Num.Obs. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 146 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.162 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; R2 Adj. &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.133 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;&lt;tr&gt;&lt;td style="padding: 0; " colspan="100%"&gt;
+&lt;sup&gt;&lt;/sup&gt; + p &amp;lt; 0.1, * p &amp;lt; 0.05, ** p &amp;lt; 0.01, *** p &amp;lt; 0.001&lt;/td&gt;&lt;/tr&gt;&lt;/tfoot&gt;
+&lt;/table&gt;
+
+
+---
+### Hausman test
+
+
+```r
+# The Hausman test is used to decide whether to use fixed effects or random effects.
+# H0: FE coefficients are not significantly different from the RE coefficients
+# Ha: FE coefficients are significantly different from the RE coefficients
+
+# Hausman test for fixed versus random effects
+phtest(model_fe, model_re)
+```
+
+---
+### Hausman test
+
+
+```
+## 
+## 	Hausman Test
+## 
+## data:  lscrap ~ tothrs + d88 + d89 + grant + grant_1
+## chisq = 1.225, df = 5, p-value = 0.9425
+## alternative hypothesis: one model is inconsistent
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

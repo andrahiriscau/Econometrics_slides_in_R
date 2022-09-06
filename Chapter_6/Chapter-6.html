@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Chapter 6: Multiple Regression Analysis: Further Issues</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Chapter 6: Multiple Regression Analysis: Further Issues
+]
+.subtitle[
+## Introductory Econometrics: A Modern Approach
+]
+
+---
+
+
+
+
+
+
+
+
+
+
+
+## 6.1 Effects of data scaling on OLS statistics
+
+
+**Dependent Variables**
+
+`\(\widehat{b w g h} t=\hat{\beta}_{0}+\hat{\beta}_{1}\)` cigs `\(+\hat{\beta}_{2}\)` faminc
+
+  - bwght `\(=\)` child birth weight, in ounces.
+  - cigs `\(=\)` number of cigarettes smoked by the mother while pregnant, per day.
+  - faminc `\(=\)` annual family income, in thousands of dollars.
+
+--
+
+`\(\widehat{\text { bwght }}/ 16=\hat{\beta}_{0} / 16+\left(\hat{\beta}_{1} / 16\right)\)` cigs `\(+\left(\hat{\beta}_{2} / 16\right)\)` faminc `\(.\)`
+
+--
+
+When variables are re-scaled, the coefficients, standard errors, confidence intervals, t statistic and F statistic changes in a way that preserve the testing outcome.
+
+---
+
+&lt;img src="61.png" width="900px" style="display: block; margin: auto;" /&gt;
+
+
+---
+### Data scaling of independent variables
+
+Define `\(packs=\frac{cigs}{20}\)`
+
+`\(\widehat{\text { bwght }}=\hat{\beta}_{0}+\left(20 \hat{\beta}_{1}\right)(\)` cigs `\(/ 20)+\hat{\beta}_{2}\)` faminc `\(=\hat{\beta}_{0}+\left(20 \hat{\beta}_{1}\right)\)` packs `\(+\hat{\beta}_{2}\)` faminc.
+
+&lt;img src="61.png" width="700px" style="display: block; margin: auto;" /&gt;
+
+--
+
+ - the coefficient and standard erro on `packs` is 20 times that on `cigs`. This means that `t-statistics` is the same in both cases.
+ 
+ Changing the unit of measurement of the dependent variable, when it appears in logarithmic form, does not affect any of the slope estimates.
+
+
+---
+### Standardizing the variables (Beta coefficients)
+
+The test scores are used in wage equations, and the scale of these test scores is often arbitrary and not easy to interpret 
+
+We are interested in how a particular individual's score compares with the population:
+  - Instead of asking about the effect on hourly wage if say a test score is 10 point higher, it makes more sense to ask what happends when the test score is **one standard deviation** higher.
+    
+Standardizing all variables:
+
+--
+
+  1) Original form 
+
+`\(y_{i}=\hat{\beta}_{0}+\hat{\beta}_{1} x_{i 1}+\hat{\beta}_{2} x_{i 2}+\ldots+\hat{\beta}_{k} x_{i k}+\hat{u}_{i}\)`
+
+--
+
+  2) Subtract the mean 
+
+`\(y_{i}-\bar{y}=\hat{\beta}_{1}\left(x_{i 1}-\bar{x}_{1}\right)+\hat{\beta}_{2}\left(x_{i 2}-\bar{x}_{2}\right)+\ldots+\hat{\beta}_{k}\left(x_{i k}-\bar{x}_{k}\right)+\hat{u}_{i}\)`
+
+--
+
+  3) Let `\(\hat{\sigma}_i\)` be the sample standard deviation for each variable
+
+`\(\left(y_{i}-\bar{y}\right) / \hat{\sigma}_{y}=\left(\hat{\sigma}_{1} / \hat{\sigma}_{y}\right) \hat{\beta}_{1}\left[\left(x_{i 1}-\bar{x}_{1}\right) / \hat{\sigma}_{1}\right]+\ldots+\left(\hat{\sigma}_{k} / \hat{\sigma}_{y}\right) \hat{\beta}_{k}\left[\left(x_{i k}-\bar{x}_{k}\right) / \hat{\sigma}_{k}\right]+\left(\hat{u}_{i} /\hat{\sigma}_{y}\right)\)`
+
+---
+### Standardizing all variables
+
+`\(\left(y_{i}-\bar{y}\right) / \hat{\sigma}_{y}=\left(\hat{\sigma}_{1} / \hat{\sigma}_{y}\right) \hat{\beta}_{1}\left[\left(x_{i 1}-\bar{x}_{1}\right) / \hat{\sigma}_{1}\right]+\ldots+\left(\hat{\sigma}_{k} / \hat{\sigma}_{y}\right) \hat{\beta}_{k}\left[\left(x_{i k}-\bar{x}_{k}\right) / \hat{\sigma}_{k}\right]+\left(\hat{u}_{i} /\hat{\sigma}_{y}\right)\)`
+
+It is useful to rewrite the equation above as: 
+
+`\(z_{y}=\hat{b}_{1} z_{1}+\hat{b}_{2} z_{2}+\ldots+\hat{b}_{k} z_{k}+\)` error
+
+where `\(z_{y}\)` denotes the `\(z\)`-score of `\(y, z_{1}\)` is the `\(z\)`-score of `\(x_{1}\)`, and so on. The new coefficients are
+
+`$$\hat{b}_{j}=\left(\hat{\sigma}_{j} / \hat{\sigma}_{y}\right) \hat{\beta}_{j} \text { for } j=1, \ldots, k$$`
+
+`\(\hat{b}_{j}\)` are traditionally called **standardized coefficients** or **beta coefficients**
+
+
+Beta coefficients receive their interesting meaning from equation above: 
+
+   - If `\(x_{1}\)` increases by one standard deviation, then `\(\hat{y}\)` changes by `\(\hat{b}_{1}\)` standard deviations. 
+   - Thus, we are measuring effects not in terms of the original units of `\(y\)` or the `\(x_{j}\)`, but in **standard deviation units**. 
+
+---
+
+### Example 6.1: Effects of pollution on housing prices 
+
+Level- level model:
+
+price `\(=\beta_{0}+\beta_{1}\)` nox `\(+\beta_{2}\)` crime `\(+\beta_{3}\)` rooms `\(+\beta_{4}\)` dist `\(+\beta_{5}\)` stratio `\(+u\)`
+
+where `crime` is the number of reported crimes per capita
+
+
+Standardized model:
+
+`\(\widehat{\text { zprice }}=-.340\)` znox `\(-.143\)` zcrime `\(+.514\)` zrooms `\(-.235\)` zdist `\(-.270\)` zstratio
+
+Interpretation:
+  - a one standard deviation increase in `nox` decreases price by .34 standard deviations
+  
+--
+
+  - a one standard deviation increase in `crime` reduces price by .14 standard deviations
+ 
+--
+
+Whether we use standardize or unstandardized variables does not affect statistical significance: the **t statistics** are the same in both cases
+
+
+
+---
+### 6.2 More on functional form
+
+ a) More on using logarithmic functional form
+
+
+`\(\log (\)` price `\()=\beta_{0}+\beta_{1} \log (\)` nox `\()+\beta_{2}\)` rooms `\(+u\)`
+
+&lt;img src="63.png" width="500px" style="display: block; margin: auto;" /&gt;
+
+--
+
+Thus, when `nox` increases by 1% `price` falls by .718% holding  `rooms` fixed.
+
+--
+
+When `rooms` increases by one, `price` increases by approximately `\(100(.306)=30.6\%\)` 
+
+---
+### a) More on using logarithmic functional form
+
+To calculate the exact change:
+
+
+`$$\% \Delta \hat{y}=100 \cdot\left[\exp \left(\hat{\beta}_{2} \Delta x_{2}\right)-1\right]$$`
+
+when `\(\Delta x_2=1\)`
+
+`$$\% \Delta \hat{y}=100 \cdot\left[\exp \left(\hat{\beta}_{2}\right)-1\right]$$`
+
+--
+
+Applied to the housing price example with `\(x_{2}=\)` rooms and `\(\hat{\beta}_{2}=.306\)`,
+
+`$$\% \Delta \widehat{\text { price }}=100[\exp (.306)-1]=35.8 \%$$`
+
+  - which is notably larger than the approximate percentage change 30.6%.
+
+
+???
+chapter 2.4 we had education and wage example....
+
+---
+### More on using logarithmic functional form
+
+Reasons why logarithmic form appears in applied work:
+
+--
+  - coefficients have appealing interpretations
+  
+--
+
+  - we can ignore the units of measurement of variables
+
+  - strictly positive variables often have distribution that are heteroskedastic or skewed; taking the log can mitigate, if not, eliminate both problems
+ 
+  - taking the log of variables often narrows its range which makes the OLS estimates less sensitive to outliers (extreme values)
+ 
+--
+
+Caution:
+  - it can create extreme values cases. 
+
+      - An example is when a variable `\(y\)` is between zero and one (such as a proportion) and takes on values close to zero. In this case, `\(\log (y)\)` (which is necessarily negative) can be very large in magnitude whereas the original variable, `\(y\)`, is bounded between zero and one.
+  
+  
+---
+### More on using logarithmic functional form
+  
+  
+Unwritten rules:
+
+  - When a variable is a positive dollar amount, the log is often taken. We have seen this for variables such as wages, salaries, firm sales, and firm market value. 
+  
+--
+
+  - Variables such as population, total number of employees, and school enrollment often appear in logarithmic form; these have the common feature of being large integer values.
+  
+--
+  
+Review: distinction between a percentage change and a percentage point change
+
+  - Remember, if `unem` goes from 8% to 9% , this is an increase of one percentage point, but a `\(12.5 \%\)` increase from the initial unemployment level. Using the log means that we are looking at the percentage change in the unemployment rate:
+      - `\(\log (9)-\log (8) \approx .118\)` or `\(11.8 \%\)`, which is the logarithmic approximation to the actual `\(12.5 \%\)` increase.
+  
+  
+
+---
+### b) Model with quadratics
+
+  Quadratic functions  are also used quite often in applied economics to capture decreasing or increasing marginal effects
+  
+Model:
+
+`\(y=\beta_{0}+\beta_{1} x+\beta_{2} x^{2}+u .\)`
+
+Remember, that `\(\beta_1\)` does not measure the change in `y` with respect to `x` ; it makes no sense to hold `\(x^2\)` fixed while changing `\(x\)`
+
+Estimated equation:
+
+`\(\hat{y}=\hat{\beta}_{0}+\hat{\beta}_{1} x+\hat{\beta}_{2} x^{2}\)`
+
+
+`\(\Delta \hat{y} \approx\left(\hat{\beta}_{1}+2 \hat{\beta}_{2} x\right) \Delta x\)`, 
+
+so `\(\Delta \hat{y} / \Delta x \approx \hat{\beta}_{1}+2 \hat{\beta}_{2} x\)`
+
+The estimated slope is `\(\hat{\beta}_{1}+2 \hat{\beta}_{2}x\)`
+
+---
+### Example
+
+&lt;img src="64.png" width="500px" style="display: block; margin: auto;" /&gt;
+
+- Marginal effect of experience
+
+`\(\frac{\Delta \text { wage }}{\Delta \text { exper }}=.298-2(.0061)\)` exper
+
+
+This estimated equation implies that `exper` has a diminishing effect on `wage`. The first year of experience is worth roughly 30¢ per hour ($.298). 
+
+The second year of experience is worth less `\(.298-2(.0061)(1) \approx .286\)`, or `\(28.6\)`¢
+
+In going from 10 to 11 years of experience, wage is predicted to increase by about `\(.298-2(.0061)(10)=.176\)`, or `\(17.6 \%\)`
+
+
+???
+review math refresher A
+
+
+---
+
+When the coefficient on `\(x\)` is positive and the coefficient on `\(x^2\)` is negative, the quadratic has a parabolic shape (concave).
+
+There is always a positive value of `\(x\)`  where the effect of `\(x\)`  on `\(y\)` is zero; before this point, `\(x\)`  has a positive effect on `\(y\)`; after this point, `\(x\)`  has a negative effect on `\(y\)`.
+
+How can we find the turning point?
+
+--
+
+`$$x^{*}=|\frac{\hat{\beta}_{1}}{2 \hat{\beta}_{2}}|$$`
+
+In the wage example, `\(x^{*}=\)` `exper` `\(^{*}\)` is `\(.298 /[2(.0061)] \approx 24.4\)`
+
+---
+
+  - Does this mean the return to experience becomes negative after 24.4 years?
+
+  - Not necessarily. It depends on how many observations in the sample lie to the right of the turnaround point.
+
+  - In the given example, these are about 28% of the observations. There may be a specification problem (e.g. omitted variables). 
+
+&lt;img src="65.png" width="500px" style="display: block; margin: auto;" /&gt;
+
+---
+### Example: Effects of pollution on housing prices
+
+When the coefficient on `\(x\)` is negative and the coefficient on `\(x^2\)` is positive, the quadratic has a convex shape. Increasing effect of `\(x\)` on `\(y\)`.
+
+
+`\(\log (\)` price `\()=\beta_{0}+\beta_{1} \log (\)` nox `\()+\beta_{2} \log (\)` dist `\()+\beta_{3}\)` rooms `\(+\beta_{4}\)` rooms `\({ }^{2}+\beta_{5}\)` stratio `\(+u .\)`
+
+&lt;img src="66.png" width="600px" style="display: block; margin: auto;" /&gt;
+
+
+Does this mean that, at a low number of rooms, more rooms are associated with lower prices?
+
+`\(\frac{\Delta \log (\text { price })}{\Delta \text { rooms }}=\frac{\% \Delta \text { price }}{\Delta \text { rooms }}=-.545+.124\)` rooms
+
+
+
+---
+### Example: Effects of pollution on housing prices
+
+&lt;img src="67.png" width="500px" style="display: block; margin: auto;" /&gt;
+
+The coefficient on `rooms` is negative and the coefficient on `rooms^2` is positive, this equation literally implies that, at low values of rooms, an additional room has a negative effect on `log(price)`
+
+--
+
+Do we really believe that starting at three rooms and increasing to four rooms actually reduces a house’s expected value? Probably not. 
+
+--
+
+  -  It turns out that only five of the 506 communities in the sample have houses averaging 4.4 rooms or less, about 1% of the sample. This is so small that the quadratic to the left of 4.4 can, for practical purposes, be ignored.
+
+`$$\begin{aligned}
+\% \Delta \text { price } &amp; \approx 100\{[-.545+2(.062)] \text { rooms }\} \Delta \text { rooms } \\
+&amp;=(-54.5+12.4 \text { rooms }) \Delta \text { rooms. }
+\end{aligned}$$`
+
+Thus, an increase in rooms from, say, five to six increases price by about `\(-54.5+12.4(5)=7.5 \%\)`; the increase from six to seven increases price by roughly `\(-54.5+12.4(6)=19.9 \%\)`. This is a very strong increasing effect.
+
+---
+### c) Models with interaction terms
+
+Sometimes, it is natural for the dependent variable with respect to an explanatory variable to depend on the magnitude of yet another explanatory variable.
+
+`$$price =\beta_{0}+\beta_{1} s q r f t+\beta_{2} b d r m s+\beta_{3} s q r f t \cdot b d r m s+\beta_{4} b t h r m s+u$$`
+
+  - The partial effect of `bdrms` on `price` (holding all other variables fixed) is
+
+--
+
+`$$\frac{\Delta \text { price }}{\Delta b d r m s}=\beta_{2}+\beta_{3} s q r f t$$`
+--
+
+If `\(\beta_3&gt;0\)`, then it implies that an additional bedroom yields a higher increase in housing price for larger houses
+
+In other words, there is an interaction effect  between `square footage` and `number of bedrooms`. 
+
+In summarizing the effect of `bdrms` on `price`, we must evaluate the equation above at interesting values of `sqrft`, such as the mean value, or the lower and upper quartiles in the sample
+
+--
+
+**The parameters on the original variables can be tricky to interpret when we include an interaction term.**
+
+--
+
+  - For example, in the previous housing price equation, equation shows that `\(\beta_2\)` is the effect of `bdrms` on price for *a home with zero square feet*
+
+
+---
+### Example 6.3: Effects of attendance on final exam performance
+
+&lt;img src="6a.png" width="500px" style="display: block; margin: auto;" /&gt;
+
+--
+
+&lt;img src="6b.png" width="500px" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+
+```r
+data(attend, package='wooldridge')
+
+# Regression
+model_1 &lt;- feols(data=attend, stndfnl ~ atndrte+priGPA+ACT+priGPA^2+ACT^2+priGPA*atndrte)
+summary(model_1)
+```
+
+```
+## OLS estimation, Dep. Var.: stndfnl
+## Observations: 680 
+## Standard-errors: IID 
+##                 Estimate Std. Error   t value   Pr(&gt;|t|)    
+## (Intercept)     2.050293   1.360319  1.507215 0.13222476    
+## atndrte        -0.006713   0.010232 -0.656067 0.51200517    
+## priGPA         -1.628540   0.481003 -3.385720 0.00075118 ***
+## ACT            -0.128039   0.098492 -1.299998 0.19404671    
+## I(priGPA^2)     0.295905   0.101049  2.928314 0.00352322 ** 
+## I(ACT^2)        0.004533   0.002176  2.082939 0.03763374 *  
+## atndrte:priGPA  0.005586   0.004317  1.293817 0.19617261    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## RMSE: 0.868368   Adj. R2: 0.221777
+```
+
+
+???
+check the interpretation example 6.3
+
+---
+
+If we add the term `\(\beta_7\)` `ACT·atndrte` to equation (6.18), what is the partial effect of `atndrte` on `stndfnl`?
+
+--
+
+The new model would be:
+
+stndfnl `\(=\beta_{0}+\beta_{1}\)` atndrte `\(+\beta_{2}\)` priGP `\(A+\beta_{3} A C T+\beta_{4}\)` priGP `\(A^{2}+\beta_{5} A C T^{2}+\beta_{6}\)` priGPA atndrte `\(+\beta_{7} A C T \cdot\)` atndrte `\(+u\)` . 
+
+--
+
+Therefore, the partial effect of atndrte on stndfnl is
+`\(\beta_{1}+\beta_{6}\)` priGPA `\(+\beta_{7} \mathrm{ACT}\)`. 
+
+
+
+
+---
+
+```r
+data(wage1, package='wooldridge')
+
+# Regression
+model_1 &lt;- lm(wage ~ educ, wage1)
+#summary(model_1)
+wage1 %&lt;&gt;% mutate(wagehat1 = fitted(model_1))
+ggplot(data = wage1, mapping = aes(x = educ)) + 
+  theme_bw() +
+  geom_point(mapping = aes(y = wage, col = 'wage')) +
+  geom_point(mapping = aes(y = wagehat1, col = 'linear prediction'))
+```
+
+![](Chapter-6_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+
+---
+
+![](Chapter-6_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

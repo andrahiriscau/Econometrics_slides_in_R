@@ -1,0 +1,48 @@
+---
+title: "The correlation of family income and educational attainment"
+authors: Student names
+output: html_document
+---
+
+
+## Your Country Choice {.tabset}
+
+### Data
+Name the sources of your data and how they can be obtained. 
+
+Discuss the units of measurement of the variables of interest.
+
+Explore the sample selection for your study
+
+```{r, echo=TRUE, evaluate=TRUE}
+
+```
+
+### Plot
+
+Visualize your variables of interest using `ggplot`
+
+```{r, echo=TRUE, evaluate=TRUE}
+
+```
+
+### Summary Statistics
+Present summary statistics for the variables used in the analysis in a table (mean, standard deviation, minimum, maximum, number of observations) and include a summary table with them. All categorical variables, variables that are not continuous (e.g., race, gender), need to be presented by category.
+
+```{r, echo=TRUE, evaluate=TRUE}
+
+```
+
+### Main Results
+Write the equation you estimate. 
+
+A convincing discussion of what variables to control for is essential. Are your results causal or not? Discuss potential concerns with sample selection, omitted variables etc along with the consequences of those problems.
+
+ Present your results in a table that includes coefficients, standard error, R-squared and number of observations. The control variables should be added one by one, and the results should be reported in separate columns (number of observations should be constant)
+ 
+ Write about the magnitude and interpretations of your coefficients. Are they statistically significant (includes significance levels in tables)? Do they have or not the expected sign (this may indicate a specification problem, for example, omitted variables)?
+ 
+ 
+```{r, echo=TRUE, evaluate=TRUE}
+
+```
