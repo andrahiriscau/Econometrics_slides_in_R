@@ -45,7 +45,7 @@
 
 [Fixed Effects](https://andrahiriscau.github.io/Econometrics_slides_in_R/Fixed_Effects/Fixed_effects.html)
 
-[Instrumental Variables](https://andrahiriscau.github.io/Econometrics_slides_in_R/Instrumental_Variable/Instrumental_variables.html)
+[Instrumental Variables](https://andrahiriscau.github.io/Econometrics_slides_in_R/Instrumental_Variables/Instrumental_variables.html)
 
 [Regression Discontinuity](https://andrahiriscau.github.io/Econometrics_slides_in_R/Regression_Discontinuity/RD.html)
 
