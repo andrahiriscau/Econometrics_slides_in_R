@@ -55,9 +55,9 @@
 
 [Introductory Econometrics A Modern Approach](https://www.cengage.com/c/introductoryeconometrics-a-modern-approach-7e-wooldridge/9781337558860PF/) by Jeffrey M. Wooldridge
 
-[The Effect: An Introduction to Research Design and Causality by Nick Huntington-Klein:](https://theeffectbook.net/index.html)
+[The Effect: An Introduction to Research Design and Causality:](https://theeffectbook.net/index.html) by Nick Huntington-Klein
 
-[Causal Inference: The Mixtape by Scott Cunningham:](https://mixtape.scunning.com/index.html)
+[Causal Inference: The Mixtape:](https://mixtape.scunning.com/index.html) by Scott Cunningham
 
 ## Additional teaching materials:
 
