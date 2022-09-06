@@ -14,7 +14,7 @@
 [Group project description](https://andrahiriscau.github.io/Econometrics_slides_in_R/Starting_with_R/Group_project.html)
 
 
-### Slides: Introductory Econometrics A Modern Approach Jeffrey M. Wooldridge
+### Slides: [Introductory Econometrics A Modern Approach](https://www.cengage.com/c/introductoryeconometrics-a-modern-approach-7e-wooldridge/9781337558860PF/) by Jeffrey M. Wooldridge
 
 [Chapter 1: What is Econometrics?](https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_1/What-is-Econometrics.html)
 
@@ -39,7 +39,7 @@
 [Chapter 16: Simultaneous Equations Models](https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_16/Chapter_16.html)
 
 
-### Slides The Effect book
+### Slides: [The Effect Book](https://theeffectbook.net) by Nick Huntington-Klein
 
 [Differences-in-Differences](https://andrahiriscau.github.io/Econometrics_slides_in_R/DiD/Differences-in-Differences.html)
 
@@ -51,7 +51,7 @@
 
 
 
-# The recommneded books are:
+# The recommended books are:
 
 Introductory Econometrics A Modern Approach Jeffrey M. Wooldridge
 
@@ -59,7 +59,7 @@ Introductory Econometrics A Modern Approach Jeffrey M. Wooldridge
 
 [Causal Inference: The Mixtape by Scott Cunningham:](https://mixtape.scunning.com/index.html)
 
-## Teaching materials:
+## Additional teaching materials:
 
 [Econometrics Course by Nick Huntington-Klein:](https://github.com/NickCH-K/EconometricsSlides)
 
