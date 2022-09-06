@@ -16,9 +16,7 @@
 
 ### Slides: Introductory Econometrics A Modern Approach Jeffrey M. Wooldridge
 
-[Chapter 1: What is Econometrics?](https://andrahiriscau.github.io/EEconometrics_slides_in_R/Lecture_1/Econometrics.html#1)
-
-Introductory Econometrics A Modern Approach Jeffrey M. Wooldridge
+[Chapter 1: What is Econometrics?](https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_1/What-is-Econometrics.html)
 
 [Chapter 2: The Simple Regression Model](https://andrahiriscau.github.io/Econometrics_slides_in_R/Chapter_2/Chapter_2.html#1)
 
