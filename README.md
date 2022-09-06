@@ -57,7 +57,7 @@
 
 [The Effect: An Introduction to Research Design and Causality:](https://theeffectbook.net/index.html) by Nick Huntington-Klein
 
-[Causal Inference: The Mixtape:](https://mixtape.scunning.com/index.html) by Scott Cunningham
+[Causal Inference: The Mixtape](https://mixtape.scunning.com/index.html) by Scott Cunningham
 
 ## Additional teaching materials:
 
