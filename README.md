@@ -9,9 +9,9 @@
 
 ### R
 
-[Starting with R](https://andrahiriscau.github.io/Econometrics_slides_in_R/Starting with R/Starting-with-R.html)
+[Starting with R](https://andrahiriscau.github.io/Econometrics_slides_in_R/Starting_with_R/Starting-with-R.html)
 
-[Group project description](https://andrahiriscau.github.io/Econometrics_slides_in_R/Starting with R/Group_project.html)
+[Group project description](https://andrahiriscau.github.io/Econometrics_slides_in_R/Starting_with_R/Group_project.html)
 
 
 ### Slides: Introductory Econometrics A Modern Approach Jeffrey M. Wooldridge
@@ -45,11 +45,11 @@ Introductory Econometrics A Modern Approach Jeffrey M. Wooldridge
 
 [Differences-in-Differences](https://andrahiriscau.github.io/Econometrics_slides_in_R/DiD/Differences-in-Differences.html)
 
-[Fixed Effects](https://andrahiriscau.github.io/Econometrics_slides_in_R/Fixed Effects/Fixed_effects.html)
+[Fixed Effects](https://andrahiriscau.github.io/Econometrics_slides_in_R/Fixed_Effects/Fixed_effects.html)
 
-[Instrumental Variables](https://andrahiriscau.github.io/Econometrics_slides_in_R/Instrumental Variable/Instrumental_variables.html)
+[Instrumental Variables](https://andrahiriscau.github.io/Econometrics_slides_in_R/Instrumental_Variable/Instrumental_variables.html)
 
-[Regression Discontinuity](https://andrahiriscau.github.io/Econometrics_slides_in_R/Regression Discontinuity/RD.html)
+[Regression Discontinuity](https://andrahiriscau.github.io/Econometrics_slides_in_R/Regression_Discontinuity/RD.html)
 
 
 
